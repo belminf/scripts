@@ -1,0 +1,30 @@
+#!/bin/bash
+
+#-------------------------------------------------------------------------------
+# xsu
+# Belmin Fernandez <me@iambelmin.com>
+# 
+# Copies .Xauthority to USER (e.g., root) being su'd to. Executing user must
+# have sudo access as USER.
+#
+# NOTE: Overrides ~/.xauthority
+#
+# Revision history:
+# 2014-01-14: Created
+#-------------------------------------------------------------------------------
+
+usage() {
+    echo "Usage: $0 USER"
+}
+
+# Exit if we do not have only 1 arg
+if [ "$#" -ne 1 ]; then
+    usage
+    exit 1
+fi
+
+# To avoid bash eval issues with tilde
+TARGET_HOME=~${1}
+eval TARGET_HOME=$TARGET_HOME
+
+cat ${HOME}/.Xauthority | sudo -u $1 tee ${TARGET_HOME}/.Xauthority > /dev/null && sudo su - $1
