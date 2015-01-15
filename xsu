@@ -7,7 +7,7 @@
 # Copies .Xauthority to USER (e.g., root) being su'd to. Executing user must
 # have sudo access as USER.
 #
-# NOTE: Overrides ~/.xauthority
+# NOTE: Overwrites target's .xauthority
 #
 # Revision history:
 # 2014-01-14: Created
