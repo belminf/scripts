@@ -14,7 +14,7 @@
 #-------------------------------------------------------------------------------
 
 usage() {
-    echo "Usage: $0 USER"
+    echo "Usage: ${0} USER"
 }
 
 # Exit if we do not have only 1 arg
@@ -24,7 +24,7 @@ if [ "$#" -ne 1 ]; then
 fi
 
 # To avoid bash eval issues with tilde
-TARGET_HOME=~${1}
-eval TARGET_HOME=$TARGET_HOME
+TARGET_HOME="~${1}"
+eval TARGET_HOME="${TARGET_HOME}"
 
-cat ${HOME}/.Xauthority | sudo -u $1 tee ${TARGET_HOME}/.Xauthority > /dev/null && sudo su - $1
+cat ${HOME}/.Xauthority | sudo -u ${1} tee ${TARGET_HOME}/.Xauthority > /dev/null && sudo su - ${1}
